@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { query } from '@angular/animations';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-busqueda',
@@ -6,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class BusquedaComponent implements OnInit {
+export class BusquedaComponent  {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  buscar(termino: string){
+      console.log("hey");
+      console.log(termino);
+
+     // document.querySelector('input').value='';
   }
-
 }
