@@ -5,6 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class GifsService {
 
+  /*CREAMOS LA API KEY DESDE LA PÁGINA
+  https://developers.giphy.com/dashboard/
+
+  En Docs - Giphy API - search endpoints
+  podemos encontrar la url necesaria y los parámetros para hacer la llamada
+  api.giphy.com/v1/gifs/search
+  */
+  private apiKey: string = 'HNg6Vx4eB7zkeRBdxR5zwPe28iYsh6pR';
   private _historial: string[] = [];
 
   get historial(){
@@ -20,7 +28,12 @@ export class GifsService {
       this._historial = this._historial.splice(0,10);
     }
 
-
+  fetch("https://api.giphy.com/v1/gifs/search?api_key=HNg6Vx4eB7zkeRBdxR5zwPe28iYsh6pR&q=dragon+ball+z&limit=10")
+    .then( resp => {
+      resp.json().then( data => {
+        console.log(data);
+      })
+    })
 
     console.log(this._historial);
   }
