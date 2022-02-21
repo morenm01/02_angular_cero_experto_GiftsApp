@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GifsService {
-
   /*CREAMOS LA API KEY DESDE LA PÁGINA
   https://developers.giphy.com/dashboard/
 
@@ -15,25 +14,23 @@ export class GifsService {
   private apiKey: string = 'HNg6Vx4eB7zkeRBdxR5zwPe28iYsh6pR';
   private _historial: string[] = [];
 
-  get historial(){
+  get historial() {
     return [...this._historial];
   }
 
-  buscarGifs( query: string = ""){
-
+  async buscarGifs(query: string = '') {
     query = query.trim().toLocaleLowerCase();
 
-    if(!this._historial.includes(query)){
+    if (!this._historial.includes(query)) {
       this._historial.unshift(query);
-      this._historial = this._historial.splice(0,10);
+      this._historial = this._historial.splice(0, 10);
     }
 
-  fetch("https://api.giphy.com/v1/gifs/search?api_key=HNg6Vx4eB7zkeRBdxR5zwPe28iYsh6pR&q=dragon+ball+z&limit=10")
-    .then( resp => {
-      resp.json().then( data => {
-        console.log(data);
-      })
-    })
+    const resp = await fetch(
+      'https://api.giphy.com/v1/gifs/search?api_key=HNg6Vx4eB7zkeRBdxR5zwPe28iYsh6pR&q=dragon+ball+z&limit=10'
+    );
+    const data = await resp.json();
+    console.log(data);
 
     console.log(this._historial);
   }
