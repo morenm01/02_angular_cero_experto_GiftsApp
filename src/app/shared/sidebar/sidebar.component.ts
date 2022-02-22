@@ -12,4 +12,10 @@ export class SidebarComponent {
   get historial(){
     return this.gifsService.historial;
   }
+
+  buscar(query:string){
+    console.log('busqueda' + query)
+
+    this.gifsService.buscarGifs(query);
+  }
 }
